@@ -10,8 +10,6 @@ while True:
     else:
         lst.append(item)
 
-#print(lst)
-
 new_lst = set(lst)
 grocery_dict = {}
 for ele in new_lst:
@@ -24,9 +22,3 @@ for ele in lst:
 new_dict = sorted(grocery_dict)
 for i in new_dict:
     print(grocery_dict[i], i.upper())
-
-#for i in grocery_dict:
-#
-#    print(grocery_dict[i])
-#    print(i.upper())
-#

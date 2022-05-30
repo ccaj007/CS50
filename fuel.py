@@ -1,23 +1,19 @@
-
-
 while True:
     s = input('Fraction: ')
     n, d = s.split('/')
-    print(n)
-    print(d)
+
     try:
-        value = round(int(n) / int(d))
-        print(value)
+        value = int(n)/int(d)
     except (ZeroDivisionError, ValueError):
-        print("error")
+        pass
     
     else:
         break
 
 
-if value > .99:
+if value > .98:
     print('F')
-elif value < .01:
+elif value < .02:
     print('E')
 else:
     print(f"{value * 100}%")

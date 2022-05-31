@@ -24,11 +24,53 @@ If the user provides two command-line arguments and the first is not -f or --fon
 
 import sys
 import random
+import argparse
 from pyfiglet import Figlet
 
-figlet = Figlet()
-figlet.getFonts()
-txt = input("Input: ")
+def get_args():
+    """Get command-line arguments"""
 
-print(figlet.renderText(txt))
+    parser = argparse.ArgumentParser(
+        description='FIGlet - ASCII art',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
+    #parser.add_argument('text',
+    #                    metavar='text',
+    #                    type=str,
+    #                    help='Input string or file')
+
+    parser.add_argument('-f',
+                        '--font',
+                        help='fontname',
+                        metavar='str',
+                        type=str)
+                      
+    args = parser.parse_args()
+
+    #if os.path.isfile(args.text):
+    #    args.text = open(args.text).read().rstrip()
+
+    return args
+
+def main():
+    figlet = Figlet()
+    font_list = figlet.getFonts()
+    args = get_args()
+
+    if len(sys.argv) == 1:
+        f = random.choice(font_list)
+    else:
+        f = args.font
+        if f not in font_list:
+            sys.exit('Invalid usage')
+
+    
+    txt = input("Input: ")
+
+
+
+    figlet.setFont(font=f)
+    print(figlet.renderText(txt))
+
+if __name__ == '__main__':
+    main()

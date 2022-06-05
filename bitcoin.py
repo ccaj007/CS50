@@ -34,18 +34,9 @@ try:
 except Exception as err:
     sys.exit('Command-line argument is not a number')
 
-
-print(qty * 100)
-
-response = request.get("https://api.coindesk.com/v1/bpi/currentprice.json")
+response = requests.get("https://api.coindesk.com/v1/bpi/currentprice.json")
 o = response.json()
-print(o)
+#print(o)
+rate = o["bpi"]["USD"]["rate"]
 
-
-
-#
-#o = response.json()
-#for result in o["results"]:
-#    print(result["trackName"])
-#
-
+print(qty*float(rate.replace(",","")))
